@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: dev
+
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      pattern:  '%h %l %u %t "%r" %s %bbyte %Dms'
+    basedir: applog/mqttIngestor
+
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    name : log/mqtt-app.log
+    max-history : 30
+#    path: applog/mqttIngestor
+    max-size: 10
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+---
+spring:
+  profiles: dev
+  
+logging:
+  level:
+    root: DEBUG
+---
+spring:
+  profiles: stg
+
+logging:
+  level:
+    root: DEBUG
+---
+spring:
+  profiles: prd
+
+logging:
+  level:
+    root: ERROR
+

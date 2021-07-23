@@ -17,7 +17,7 @@ import org.springframework.messaging.MessagingException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.garak.ingestor.entity.MyTest;
+import com.garak.ingestor.nosql.entity.Mobility;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,54 +26,9 @@ import lombok.extern.slf4j.Slf4j;
 public class IngestorApplication {
 
 	static ObjectMapper objectMapper;
-    public static void main(String[] args) {
-    	objectMapper = new ObjectMapper();
-        new SpringApplicationBuilder(IngestorApplication.class)
-                .web(WebApplicationType.NONE)
-                .run(args);
-    }
 
-    @Bean
-    public MessageChannel mqttInputChannel() {
-        return new DirectChannel();
-    }
-
-    @Bean
-    public MessageProducer inbound() {
-        MqttPahoMessageDrivenChannelAdapter adapter =
-                new MqttPahoMessageDrivenChannelAdapter("tcp://175.106.98.100:1883", "testClient",
-                                                 "test", "test2");
-        adapter.setCompletionTimeout(5000);
-        adapter.setConverter(new DefaultPahoMessageConverter());
-        adapter.setQos(1);
-        adapter.setOutputChannel(mqttInputChannel());
-        return adapter;
-    }
-
-    @Bean
-    @ServiceActivator(inputChannel = "mqttInputChannel")
-    public MessageHandler handler() {
-        return new MessageHandler() {
-
-            @Override
-            public void handleMessage(Message<?> message) throws MessagingException {
-            	
-                System.out.println("before convert" + message.getPayload());
-                MyTest t;
-				try {
-					t = objectMapper.readValue(message.getPayload().toString(), MyTest.class);
-	                log.info(" >>>>>>>>>>>> [t.getId()] = {}", t.getId());
-				} catch (JsonMappingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JsonProcessingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-            }
-
-        };
-    }
+	public static void main(String[] args) {
+		new SpringApplicationBuilder(IngestorApplication.class).web(WebApplicationType.NONE).run(args);
+	}
 
 }

@@ -1,5 +1,5 @@
 package com.garak.ingestor.vo;
 
-public class Gps {
+public class Battery123 {
 
 }
