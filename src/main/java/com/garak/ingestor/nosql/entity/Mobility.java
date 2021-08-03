@@ -11,6 +11,7 @@ import lombok.Getter;
 public class Mobility {
 
 	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	@JsonProperty("Gps")
 	private Gps gps;

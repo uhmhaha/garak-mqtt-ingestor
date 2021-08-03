@@ -1,8 +1,16 @@
 spring:
   profiles:
     active: dev
+    # 하이버네이트가 실행한 모든 SQL문을 콘솔로 출력
+  jpa:
+    properties:
+      hibernate: 
+        show_sql: true         # 하이버네이트가 실행한 모든 SQL문을 콘솔로 출력
+        format_sql: true       # SQL문을 가독성 있게 표현
+        use_sql_comments: true # 디버깅 정보 출력
 
 server:
+  port: 8080
   tomcat:
     accesslog:
       enabled: true
@@ -15,7 +23,7 @@ logging:
     name : log/mqtt-app.log
     max-history : 30
 #    path: applog/mqttIngestor
-    max-size: 10
+    max-size: 30MB
     
 management:
   endpoints:
@@ -25,21 +33,51 @@ management:
 ---
 spring:
   profiles: dev
-  
+  datasource:
+    url: jdbc:mysql://localhost:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
+    username: root
+    password: Skccvas1@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: 
+    # mysql 사용 
+    database: mysql 
+    # 콘솔에 sql 출력 여부  
+    show-sql: true 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
 logging:
   level:
-    root: DEBUG
+    root: INFO
 ---
 spring:
   profiles: stg
-
+  datasource:
+    url: jdbc:mysql://localhost:3306/DB명작성?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
+    username: test
+    password: test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: 
+    # mysql 사용 
+    database: mysql 
+    # 콘솔에 sql 출력 여부  
+    show-sql: true 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 logging:
   level:
     root: DEBUG
 ---
 spring:
   profiles: prd
-
+  datasource:
+    url: jdbc:mysql://localhost:3306/DB명작성?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
+    username: test
+    password: test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: 
+    # mysql 사용 
+    database: mysql 
+    # 콘솔에 sql 출력 여부  
+    show-sql: true 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 logging:
   level:
     root: ERROR
