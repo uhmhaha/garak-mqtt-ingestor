@@ -3,36 +3,39 @@ package com.garak.ingestor.conf;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.integration.support.management.IntegrationManagedResource;
-import org.springframework.jmx.export.annotation.ManagedResource;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.garak.ingestor.nosql.entity.Mobility;
+import com.garak.ingestor.nosql.entity.EventRuleEntity;
+import com.garak.ingestor.nosql.repository.EventRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MobilityEventAdaptor implements MobilityEventHandler {
-	
-	@Autowired
+
+	private final Map<String, EventRuleEntity> events;
+	private EventRepository eventRepository;
 	private ObjectMapper objectMapper;
 	
-	private final Map<String, EventRuleEntity> events;
-
-	protected MobilityEventAdaptor() {
+	public MobilityEventAdaptor(EventRepository eventRepository, ObjectMapper objectMapper) {
 		this.events = new HashMap<String, EventRuleEntity>();
+		this.eventRepository = eventRepository;
+		this.objectMapper = objectMapper;
 	}
 
 	@Override
-	public void setMobilityEvent( String fieldName ) {
+	public void setMobilityEvent(String fieldName) {
 	}
 
 	@Override
 	public void setMobilityEvent() {
 		// TODO Auto-generated method stub
-		
+
 	}
-	//configuration으로 rest api로 동적으로 변경가능하다. api-key를 지정
-	
+
+	public void addMobilityEvent() {
+		// TODO Auto-generated method stub
+
+	}
+	// configuration으로 rest api로 동적으로 변경가능하다. api-key를 지정
+
 }

@@ -30,13 +30,14 @@ management:
     web:
       exposure:
         include: health
+
 ---
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
+    url: jdbc:mysql://175.106.98.100:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
     username: root
-    password: Skccvas1@
+    password: Skcnc123!@#
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa: 
     # mysql 사용 
@@ -47,6 +48,9 @@ spring:
 logging:
   level:
     root: INFO
+mqtt:
+  url: tcp://175.106.98.100:1883
+  clientid: testclient
 ---
 spring:
   profiles: stg
@@ -64,6 +68,8 @@ spring:
 logging:
   level:
     root: DEBUG
+mqtt:
+  url: tcp://175.106.98.100:1883
 ---
 spring:
   profiles: prd
@@ -81,4 +87,6 @@ spring:
 logging:
   level:
     root: ERROR
+mqtt:
+  url: tcp://175.106.98.100:1883
 

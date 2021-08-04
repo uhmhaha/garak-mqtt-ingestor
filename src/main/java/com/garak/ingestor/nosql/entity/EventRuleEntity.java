@@ -1,4 +1,4 @@
-package com.garak.ingestor.conf;
+package com.garak.ingestor.nosql.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

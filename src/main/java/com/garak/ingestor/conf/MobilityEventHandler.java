@@ -7,6 +7,4 @@ public interface MobilityEventHandler {
 	default void setMobilityEvent(String outputChannel) {
 		throw new UnsupportedOperationException("This MessageProducer does not support setting the channel by name.");
 	}
-	
-	
 }
