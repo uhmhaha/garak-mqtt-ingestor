@@ -17,6 +17,7 @@ import org.springframework.messaging.MessagingException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import com.garak.ingestor.nosql.entity.Mobility;
 import com.garak.ingestor.nosql.entity.MobilityRDB;
 import com.garak.ingestor.nosql.repository.MobilityRDBRepository;
@@ -33,15 +34,21 @@ public class MqttConfiguration {
 	@Autowired
 	private MobilityRepository mobiRepo;
 	@Autowired
-	private ObjectMapper objectMapper;
-	@Autowired
 	private MqttProperties mqttProp;
-
+	@Autowired
+	private MobilityStateBroker mobiBroker;
+	
 	@Bean
 	public MessageChannel mqttInputChannel() {
 		return new DirectChannel();
 	}
-
+	
+    @Bean("objectReader")
+    public ObjectReader objectReader() {
+    	ObjectReader reader = new ObjectMapper().readerFor(Mobility.class);
+		return reader;
+    }
+    
 	@Bean
 	public MqttPahoMessageDrivenChannelAdapter inbound() {
 		List<MobilityRDB> mobis = mobiRdbRepo.findAll();
@@ -55,20 +62,19 @@ public class MqttConfiguration {
 		adapter.setOutputChannel(mqttInputChannel());
 		return adapter;
 	}
-
+	
 	@Bean
 	@ServiceActivator(inputChannel = "mqttInputChannel")
 	public MessageHandler handler() {
 		return new MessageHandler() {
 			@Override
 			public void handleMessage(Message<?> message) throws MessagingException {
-
-				System.out.println("before convert" + message.getPayload());
+				// TODO Auto-generated method stub
 				Mobility m;
-
 				try {
 					// 데이터 수신
-					m = objectMapper.readValue(message.getPayload().toString(), Mobility.class);
+					m = objectReader().readValue(message.getPayload().toString());
+					
 					log.info(" >>>>>>>>>>>> [t.getId()] = {}", m.getGps().getCreated());
 					mobiRepo.save(m);
 					// 데이터
@@ -81,5 +87,45 @@ public class MqttConfiguration {
 				}
 			}
 		};
+	}
+	
+	public EventEntity evlauateEvent( Mobility mobi ) {
+		
+		EventDto event = new EventDto();
+		
+		String rentalState = mobiBroker.getMobiState().get(mobi.getId());
+		int mobiState = mobi.getBattery().getBmsStat();
+		
+		if( rentalState.equals("rental")) {
+			switch(mobiState) {
+				case 2://getBmsStat == 2 : Driving
+					event.setEventCode("Driving");
+						
+					
+					break;
+				case 3://getBmsStat == 3 : Charging
+					event.setEventCode("ChargingOnDriving");
+					break;
+				case 6://getBmsStat == 6 : Fault
+					event.setEventCode("FaultOnBattery");
+					break;
+
+			} 
+		}else if( rentalState.equals("waiting")) {
+			switch(mobiState) {
+				case 3://getBmsStat == 3 : Charging
+					event.setEventCode("ChargingOnStaying");
+					break;
+				case 6://getBmsStat == 6 : Fault
+					event.setEventCode("FaultOnBattery");
+					break;
+					
+				case 7://getBmsStat == 7 : PostRun
+					event.setEventCode("Staying");
+					break;
+			} 
+		}
+		
+		return null;
 	}
 }

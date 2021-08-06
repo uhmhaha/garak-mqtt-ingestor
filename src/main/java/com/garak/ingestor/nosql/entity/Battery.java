@@ -111,7 +111,7 @@ public class Battery {
 	@JsonProperty("PackSOC")private double PackSOC;
 	@JsonProperty("PackSOH")private double PackSOH;
 	@JsonProperty("PackCurr")private double PackCurr;
-	@JsonProperty("BmsStat")private double BmsStat;
+	@JsonProperty("BmsStat")private int BmsStat;
 	@JsonProperty("BmsFltLvl")private double BmsFltLvl;
 	@JsonProperty("RlyStat")private double RlyStat;
 	@JsonProperty("MaxCellVol")private double MaxCellVol;

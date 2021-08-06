@@ -3,6 +3,7 @@ package com.garak.ingestor.nosql.entity;
 import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.garak.ingestor.conf.EventDto;
 
 import lombok.Getter;
 
@@ -17,5 +18,6 @@ public class Mobility {
 	private Gps gps;
 	@JsonProperty("Battery")
 	private Battery battery;
-
+	
+	private EventDto eventState;
 }
