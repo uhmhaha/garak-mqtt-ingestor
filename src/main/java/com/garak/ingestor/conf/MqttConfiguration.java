@@ -74,6 +74,12 @@ public class MqttConfiguration {
 				try {
 					// 데이터 수신
 					m = objectReader().readValue(message.getPayload().toString());
+					//id 설정 : 추후 edge단으로 추가 가능 
+					m.setMobiId(message.getHeaders().get("mqtt_receivedTopic").toString().substring(12));
+					//event state
+					m.setEventName(evlauateEvent(m.getMobiId(), m.getBattery().getBmsStat()));
+					//rental state
+					m.setRentalState(evlauateRentalState(m.getMobiId()));
 					
 					log.info(" >>>>>>>>>>>> [t.getId()] = {}", m.getGps().getCreated());
 					mobiRepo.save(m);
@@ -84,48 +90,53 @@ public class MqttConfiguration {
 				} catch (JsonProcessingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
 			}
 		};
 	}
 	
-	public EventEntity evlauateEvent( Mobility mobi ) {
+	public String evlauateEvent( String mobiId, int mobiState ) throws Exception {
 		
-		EventDto event = new EventDto();
+		String rentalState = mobiBroker.getMobiState().get(mobiId);
 		
-		String rentalState = mobiBroker.getMobiState().get(mobi.getId());
-		int mobiState = mobi.getBattery().getBmsStat();
-		
-		if( rentalState.equals("rental")) {
+		if( rentalState.equals(null)) {
+			throw new Exception("There is no that kind of mobility.");
+		}
+		if( rentalState.equals("Rental")) {
 			switch(mobiState) {
 				case 2://getBmsStat == 2 : Driving
-					event.setEventCode("Driving");
-						
-					
-					break;
+					return "Driving";
 				case 3://getBmsStat == 3 : Charging
-					event.setEventCode("ChargingOnDriving");
-					break;
+					return "ChargingOnDriving";
 				case 6://getBmsStat == 6 : Fault
-					event.setEventCode("FaultOnBattery");
-					break;
+					return "FaultOnBattery";
+				default:
+					return "NoneInRental";
 
 			} 
-		}else if( rentalState.equals("waiting")) {
+		}else if( rentalState.equals("Waiting")) {
 			switch(mobiState) {
 				case 3://getBmsStat == 3 : Charging
-					event.setEventCode("ChargingOnStaying");
-					break;
+					return "ChargingOnStaying";
 				case 6://getBmsStat == 6 : Fault
-					event.setEventCode("FaultOnBattery");
-					break;
+					return "FaultOnBattery";
 					
 				case 7://getBmsStat == 7 : PostRun
-					event.setEventCode("Staying");
-					break;
+					return "Staying";
+				default:
+					return "NoneInWaiting";
 			} 
 		}
 		
-		return null;
+		return "None";
+		
+	}
+	
+	public String evlauateRentalState( String mobiId) {
+		
+		return mobiBroker.getMobiState().get(mobiId);
+		
 	}
 }

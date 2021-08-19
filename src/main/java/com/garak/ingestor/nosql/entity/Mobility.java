@@ -12,12 +12,28 @@ import lombok.Getter;
 public class Mobility {
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
-	@JsonProperty("Gps")
+	private String mobiId;
+	@JsonProperty("gps")
 	private Gps gps;
-	@JsonProperty("Battery")
+	@JsonProperty("battery")
 	private Battery battery;
 	
-	private EventDto eventState;
+	private String eventName;
+	private String rentalState;
+	
+	public void setMobiId(String mobiId) {
+		this.mobiId = mobiId;
+	}
+	
+	public void setEventName(String eventName) {
+		this.eventName = eventName;
+	}
+
+	public void setRentalState(String rentalState) {
+		this.rentalState = rentalState;
+	}
+	
+	
+	
 }

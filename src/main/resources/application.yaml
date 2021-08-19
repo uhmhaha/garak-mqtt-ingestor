@@ -45,6 +45,10 @@ spring:
     # 콘솔에 sql 출력 여부  
     show-sql: true 
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
+  data:
+    mongodb:  
+      uri: mongodb://admin:admin@175.106.98.100:27017/mqtt  
+
 logging:
   level:
     root: INFO
