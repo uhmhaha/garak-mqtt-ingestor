@@ -76,10 +76,15 @@ public class MqttConfiguration {
 					m = objectReader().readValue(message.getPayload().toString());
 					//id 설정 : 추후 edge단으로 추가 가능 
 					m.setMobiId(message.getHeaders().get("mqtt_receivedTopic").toString().substring(12));
+					MobiState mo = getMobiState(m.getMobiId());
+					
+					m.setMobiId(mo.getMobiId());
 					//event state
-					m.setEventName(evlauateEvent(m.getMobiId(), m.getBattery().getBmsStat()));
+					m.setEventName(evlauateEvent(mo.getRetalState(), m.getBattery().getBmsStat()));
 					//rental state
-					m.setRentalState(evlauateRentalState(m.getMobiId()));
+					m.setRentalState(mo.getRetalState());
+					m.setBattId(mo.getBattId());
+					m.setUserId(mo.getUserId());
 					
 					log.info(" >>>>>>>>>>>> [t.getId()] = {}", m.getGps().getCreated());
 					mobiRepo.save(m);
@@ -97,13 +102,8 @@ public class MqttConfiguration {
 		};
 	}
 	
-	public String evlauateEvent( String mobiId, int mobiState ) throws Exception {
+	public String evlauateEvent( String rentalState, int mobiState ) throws Exception {
 		
-		String rentalState = mobiBroker.getMobiState().get(mobiId);
-		
-		if( rentalState.equals(null)) {
-			throw new Exception("There is no that kind of mobility.");
-		}
 		if( rentalState.equals("Rental")) {
 			switch(mobiState) {
 				case 2://getBmsStat == 2 : Driving
@@ -134,9 +134,9 @@ public class MqttConfiguration {
 		
 	}
 	
-	public String evlauateRentalState( String mobiId) {
+	public MobiState getMobiState( String mobiId) {
 		
-		return mobiBroker.getMobiState().get(mobiId);
+		return mobiBroker.getMobiStateMap().get(mobiId);
 		
 	}
 }

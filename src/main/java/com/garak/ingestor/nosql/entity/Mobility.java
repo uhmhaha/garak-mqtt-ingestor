@@ -14,6 +14,8 @@ public class Mobility {
 	@Id
 	private String id;
 	private String mobiId;
+	private String battId;
+	private int userId;
 	@JsonProperty("gps")
 	private Gps gps;
 	@JsonProperty("battery")
@@ -33,7 +35,13 @@ public class Mobility {
 	public void setRentalState(String rentalState) {
 		this.rentalState = rentalState;
 	}
-	
-	
+
+	public void setBattId(String battId) {
+		this.battId = battId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	
 }
