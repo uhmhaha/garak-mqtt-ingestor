@@ -1,9 +1,11 @@
 package com.garak.ingestor.nosql.entity;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.garak.ingestor.conf.EventDto;
 
 import lombok.Getter;
 
@@ -23,6 +25,7 @@ public class Mobility {
 	
 	private String eventName;
 	private String rentalState;
+	private String interfaceDate;
 	
 	public void setMobiId(String mobiId) {
 		this.mobiId = mobiId;
@@ -42,6 +45,10 @@ public class Mobility {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public void setInterfaceDate(String localDateTime) {
+		this.interfaceDate = localDateTime;
 	}
 	
 }

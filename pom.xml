@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.skcc</groupId>
-	<artifactId>ingestor</artifactId>
+	<artifactId>ingestor-subscriber</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Ingestor</name>
 	<description>Data Ingestion  Service for karak project</description>

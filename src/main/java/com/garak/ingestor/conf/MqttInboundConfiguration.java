@@ -1,7 +1,11 @@
 package com.garak.ingestor.conf;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,8 +31,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Configuration
-public class MqttConfiguration {
+public class MqttInboundConfiguration {
 
+	@Autowired
+	private MyGateway myPublish;
 	@Autowired
 	private MobilityRDBRepository mobiRdbRepo;
 	@Autowired
@@ -37,7 +43,7 @@ public class MqttConfiguration {
 	private MqttProperties mqttProp;
 	@Autowired
 	private MobilityStateBroker mobiBroker;
-	
+	SimpleDateFormat sDate2 = new SimpleDateFormat("yyyyMMddhhmmssSSS");
 	@Bean
 	public MessageChannel mqttInputChannel() {
 		return new DirectChannel();
@@ -66,6 +72,7 @@ public class MqttConfiguration {
 	@Bean
 	@ServiceActivator(inputChannel = "mqttInputChannel")
 	public MessageHandler handler() {
+		
 		return new MessageHandler() {
 			@Override
 			public void handleMessage(Message<?> message) throws MessagingException {
@@ -76,11 +83,21 @@ public class MqttConfiguration {
 					m = objectReader().readValue(message.getPayload().toString());
 					//id 설정 : 추후 edge단으로 추가 가능 
 					m.setMobiId(message.getHeaders().get("mqtt_receivedTopic").toString().substring(12));
+					//event state				
 					MobiState mo = getMobiState(m.getMobiId());
-					
+					String eventName = evlauateEvent(mo.getRetalState(), m.getBattery().getBmsStat());
+					if(!eventName.equals(mo.getEventState())) {
+						mo.setEventState(eventName);
+						//insert into event table
+						MqttMessage mq = new MqttMessage();
+						mq.setPayload("test".getBytes());
+						//new ObjectMapper().writeValueAsBytes(mo);
+						myPublish.sendToMqtt(new ObjectMapper().writeValueAsBytes(mo),"test1234");
+					}
+					m.setEventName(eventName);
 					m.setMobiId(mo.getMobiId());
-					//event state
-					m.setEventName(evlauateEvent(mo.getRetalState(), m.getBattery().getBmsStat()));
+					m.setInterfaceDate(sDate2.format(new Date()));
+					log.info("date print : >>>" + m.getInterfaceDate());
 					//rental state
 					m.setRentalState(mo.getRetalState());
 					m.setBattId(mo.getBattId());

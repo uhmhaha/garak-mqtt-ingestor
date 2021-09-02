@@ -38,7 +38,7 @@ public class MobilityStateBroker {
 										MobilityServRDB m1  = m.getMobilityServRDBs().iterator().next();
 										log.debug("kit_id" + m1.getKitId());
 										return new MobiState(m1.getCtrlStatCd(),
-											 m.getMobiId(), m.getBattId(), m1.getUid());
+											 m.getMobiId(), m.getBattId(), m1.getUid(),null);
 							   }
 							)
 						);
@@ -52,4 +52,6 @@ class MobiState {
 	private String mobiId;
 	private String battId;
 	private int userId;
+	private String eventState;
 }
+
