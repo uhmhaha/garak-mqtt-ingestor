@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.garak.ingestor.nosql.entity.EventRuleEntity;
-import com.garak.ingestor.nosql.repository.EventRepository;
+import com.garak.ingestor.entity.EventRuleEntity;
+import com.garak.ingestor.repository.EventRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.garak.ingestor.nosql.entity;
+package com.garak.ingestor.entity;
 
 import java.util.Collection;
 
@@ -23,7 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity(name = "mobility_battery_kit") // 테이블 명을 작성
-public class MobilityKitRDB {
+public class MobilityBatteryRDB {
     @Id
 	@Column(name = "kit_id", nullable = false)
 	private String kitId;

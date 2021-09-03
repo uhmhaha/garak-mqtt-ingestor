@@ -1,4 +1,4 @@
-package com.garak.ingestor.nosql.entity;
+package com.garak.ingestor.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

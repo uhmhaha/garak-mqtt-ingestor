@@ -1,4 +1,4 @@
-package com.garak.ingestor.nosql.jackson;
+package com.garak.ingestor.jackson;
 
 public class SkipWrapperObjectDeserializer {
 

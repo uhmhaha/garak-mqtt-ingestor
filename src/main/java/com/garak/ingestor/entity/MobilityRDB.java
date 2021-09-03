@@ -1,4 +1,4 @@
-package com.garak.ingestor.nosql.entity;
+package com.garak.ingestor.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,20 @@ public class MobilityRDB {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mobi_id", nullable = false)
 	private int mobiId;
+	@Column(name = "mobi_typ_cd", nullable = false)
+	private String mobiTypCd;
+	@Column(name = "mobi_nm", nullable = false)
+	private String mobiNm;
+	@Column(name = "model", nullable = false)
+	private String model;
+	@Column(name = "mobiRegi_num", nullable = false)
+	private String mobiRegiNum;
+	@Column(name = "department_nm", nullable = false)
+	private String departmentNm;
+	@Column(name = "admin_nm", nullable = false)
+	private String adminNm;
 	@Column(name = "mobi_topic", nullable = false)
 	private String mobiTopic;
+	
 
 }

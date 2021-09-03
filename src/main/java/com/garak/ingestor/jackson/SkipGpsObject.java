@@ -1,4 +1,4 @@
-package com.garak.ingestor.nosql.jackson;
+package com.garak.ingestor.jackson;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

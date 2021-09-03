@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.garak.ingestor.nosql.entity.MobilityRDB;
+import com.garak.ingestor.entity.MobilityRDB;
 import com.garak.ingestor.service.MqttService;
 
 import lombok.RequiredArgsConstructor;

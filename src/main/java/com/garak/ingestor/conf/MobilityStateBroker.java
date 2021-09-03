@@ -4,13 +4,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.Column;
+import javax.persistence.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.garak.ingestor.nosql.entity.MobilityKitRDB;
-import com.garak.ingestor.nosql.entity.MobilityServRDB;
-import com.garak.ingestor.nosql.repository.MobilityKitRDBRepository;
+import com.garak.ingestor.entity.MobilityKitRDB;
+import com.garak.ingestor.entity.MobilityServRDB;
+import com.garak.ingestor.repository.MobilityBatteryKitRDBRepository;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -25,7 +27,7 @@ public class MobilityStateBroker {
 	private Map<String, MobiState> mobiStateMap;
 	
 	@Autowired
-	private MobilityKitRDBRepository mobiKitRDBRepo;
+	private MobilityBatteryKitRDBRepository mobiKitRDBRepo;
 	
 	@PostConstruct
 	@Transactional
@@ -38,7 +40,9 @@ public class MobilityStateBroker {
 										MobilityServRDB m1  = m.getMobilityServRDBs().iterator().next();
 										log.debug("kit_id" + m1.getKitId());
 										return new MobiState(m1.getCtrlStatCd(),
-											 m.getMobiId(), m.getBattId(), m1.getUid(),null);
+											 m.getMobiId(), m.getBattId(), m1.getUid()
+											 ,null, m1.getCtrl_serv_id(), m1.getKitId()
+											 , m1.getCtrlStatCd());
 							   }
 							)
 						);
@@ -53,5 +57,9 @@ class MobiState {
 	private String battId;
 	private int userId;
 	private String eventState;
+	
+	private int ctrlServId;
+	private String kitId;
+	private String ctrlStatCd;
 }
 

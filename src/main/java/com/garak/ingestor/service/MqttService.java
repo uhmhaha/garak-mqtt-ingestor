@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.stereotype.Service;
 
-import com.garak.ingestor.nosql.entity.MobilityRDB;
-import com.garak.ingestor.nosql.repository.MobilityRDBRepository;
+import com.garak.ingestor.entity.MobilityRDB;
+import com.garak.ingestor.repository.MobilityRDBRepository;
 
 import lombok.RequiredArgsConstructor;
 

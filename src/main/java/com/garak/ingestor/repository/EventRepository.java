@@ -1,8 +1,8 @@
-package com.garak.ingestor.nosql.repository;
+package com.garak.ingestor.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.garak.ingestor.nosql.entity.EventRuleEntity;
+import com.garak.ingestor.entity.EventRuleEntity;
 
 public interface EventRepository extends JpaRepository<EventRuleEntity, Long> {
 

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.garak.ingestor.conf.MobilityEventAdaptor;
 import com.garak.ingestor.conf.MobilityEventHandler;
-import com.garak.ingestor.nosql.entity.EventRuleEntity;
-import com.garak.ingestor.nosql.repository.EventRepository;
+import com.garak.ingestor.entity.EventRuleEntity;
+import com.garak.ingestor.repository.EventRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
