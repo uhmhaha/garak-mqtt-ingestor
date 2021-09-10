@@ -10,7 +10,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true) //추후삭제 
 public class Gps {
 	@JsonProperty("Created")
-	private int Created;
+	private long Created;
 	@JsonProperty("Yaw")
 	private double Yaw;
 	@JsonProperty("Pitch")

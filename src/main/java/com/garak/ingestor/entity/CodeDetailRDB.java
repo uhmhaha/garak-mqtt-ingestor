@@ -14,11 +14,18 @@ import lombok.NoArgsConstructor;
 @Builder // 빌더를 사용할 수 있게 함
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "battery") // 테이블 명을 작성
-public class MobilityBatteryRDB {
+@Entity(name = "comm_cd_dt") // 테이블 명을 작성
+public class CodeDetailRDB {
     @Id
-	@Column(name = "batt_id", nullable = false)
-	private String battId;
-	@Column(name = "batt_typ_cd", nullable = false)
-	private String battTypCd;
+	@Column(name = "code", nullable = true)
+	private String code;
+	@Column(name = "code_nm", nullable = true)
+	private String codeNm;
+	@Column(name = "desc", nullable = true)
+	private String desc;
+	@Column(name = "group_code", nullable = true)
+	private String groupCode;
+	@Column(name = "use_yn", nullable = true)
+	private String useYn;
+
 }

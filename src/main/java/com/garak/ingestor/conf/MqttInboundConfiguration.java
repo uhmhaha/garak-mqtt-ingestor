@@ -21,6 +21,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
+import com.garak.ingestor.entity.CodeDetailRDB;
 import com.garak.ingestor.entity.MobilityRDB;
 import com.garak.ingestor.entity.UserRDB;
 import com.garak.ingestor.repository.MobilityBatteryKitRDBRepository;
@@ -41,12 +42,6 @@ public class MqttInboundConfiguration {
 	@Autowired
 	private MobilityRDBRepository mobiRdbRepo;
 	@Autowired
-	private MobilityBatteryKitRDBRepository mbkRdbRepo;
-	@Autowired
-	private UserRDBRepository userRdbRepo;
-	@Autowired
-	private MobilityServRDBRepository msRdbRepo;
-	@Autowired
 	private MobilityNosqlRepository mobiRepo;
 	@Autowired
 	private MqttProperties mqttProp;
@@ -54,8 +49,10 @@ public class MqttInboundConfiguration {
 	private MobilityStateBroker mobiBroker;
 	@Autowired
 	private UserStateBroker userBroker;
+	//@Autowired
+	//private CodeBroker codeBroker;
 
-	SimpleDateFormat sDate2 = new SimpleDateFormat("yyyyMMddhhmmssSSS");
+	SimpleDateFormat sDate2 = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 
 	@Bean
 	public MessageChannel mqttInputChannel() {
@@ -115,15 +112,15 @@ public class MqttInboundConfiguration {
 					m.setRentalState(mo.getRetalState());
 					m.setBattId(mo.getBattId());
 					// user info
-					m.setUserId(mo.getUserId());
+					m.setUserId(Integer.toString(mo.getUserId()));
 					m.setUserNm(getUserState(mo.getUserId()).getUserNm());
 					// 
-					m.setCtrlServId(mo.get);
-					m.setCtrlStatCd(ctrlStatCd);
-					m.setCtrlStatNm(ctrlStatNm);
-					m.setMobiRegiNum(mobiRegiNum);
-					m.setMobiTypCd(mobiTypCd);
-					m.setMobiTypNm(mobiTypNm);
+					m.setCtrlServId(mo.getCtrlServId());
+					m.setCtrlStatCd(mo.getCtrlStatCd());
+					m.setCtrlStatNm("");
+					m.setMobiRegiNum(mo.getMobiRegiNum());
+					m.setMobiTypCd(mo.getMobiTypCd());
+					m.setMobiTypNm(mo.getMobiTypNm());
 
 					log.info(" >>>>>>>>>>>> [t.getId()] = {}", m.getGps().getCreated());
 					mobiRepo.save(m);
@@ -151,6 +148,8 @@ public class MqttInboundConfiguration {
 				return "ChargingOnDriving";
 			case 6:// getBmsStat == 6 : Fault
 				return "FaultOnBattery";
+//			case 6:// getBmsStat == 6 : Fault
+//				return "FaultOnBattery";
 			default:
 				return "NoneInRental";
 
@@ -190,4 +189,10 @@ public class MqttInboundConfiguration {
 		return userBroker.getUserStateMap().get(id);
 
 	}
+	
+//	public CodeDetailRDB getMobilityServiceState(int id) {
+//
+//		return userBroker.getUserStateMap().get(id);
+//
+//	}
 }

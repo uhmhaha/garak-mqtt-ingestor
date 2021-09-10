@@ -9,7 +9,7 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown = true) //추후삭제 
 public class Battery {
 	
-	@JsonProperty("Created")private int Created;
+	@JsonProperty("Created")private long Created;
 	@JsonProperty("Cell01")private double Cell01;
 	@JsonProperty("Cell02")private double Cell02;
 	@JsonProperty("Cell03")private double Cell03;

@@ -22,7 +22,7 @@ public class MobilityRDB {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mobi_id", nullable = false)
-	private int mobiId;
+	private String mobiId;
 	@Column(name = "mobi_typ_cd", nullable = false)
 	private String mobiTypCd;
 	@Column(name = "mobi_nm", nullable = false)

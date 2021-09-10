@@ -1,6 +1,7 @@
 package com.garak.ingestor.vo;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.garak.ingestor.entity.Battery;
@@ -10,14 +11,15 @@ import lombok.Getter;
 
 //참고 : https://newbedev.com/jackson-how-to-process-deserialize-nested-json
 @Getter
+@Document(collection="mobility")
 public class MobilityVO {
 
 	//ENTITY value
 	@Id
 	private String id;
-	@JsonProperty("gps")
+	@JsonProperty("GPS")
 	private Gps gps;
-	@JsonProperty("battery")
+	@JsonProperty("BMS")
 	private Battery battery;
 	
 	//Chief Data Sample
@@ -45,12 +47,12 @@ public class MobilityVO {
 	private String mobiTypNm;
 	private String ctrlStatCd;
 	private String ctrlStatNm;
-	private int userId;
+	private String userId;
 	private String userNm;
 	private String interfaceDate;
-	private String ctrlServId;
+	private int ctrlServId;
 	private String mobiRegiNum;
-	private String battId;
+	private int battId;
 	
 	//VO object - event
 	private String eventName;
@@ -68,11 +70,11 @@ public class MobilityVO {
 		this.rentalState = rentalState;
 	}
 
-	public void setBattId(String battId) {
+	public void setBattId(int battId) {
 		this.battId = battId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -100,7 +102,7 @@ public class MobilityVO {
 		this.userNm = userNm;
 	}
 
-	public void setCtrlServId(String ctrlServId) {
+	public void setCtrlServId(int ctrlServId) {
 		this.ctrlServId = ctrlServId;
 	}
 

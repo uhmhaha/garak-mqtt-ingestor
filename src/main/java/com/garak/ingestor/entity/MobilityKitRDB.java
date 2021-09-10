@@ -26,15 +26,15 @@ import lombok.ToString;
 public class MobilityKitRDB {
     @Id
 	@Column(name = "kit_id", nullable = false)
-	private String kitId;
+	private int kitId;
 	@Column(name = "mobi_id", nullable = false)
 	private String mobiId;
 	@Column(name = "batt_id", nullable = false)
-	private String battId;
+	private int battId;
 	@Column(name = "kit_yn", nullable = false)
 	private String kitYn;
 	
     @OneToMany(mappedBy = "mobilityKitRDB", fetch = FetchType.EAGER)
-    @Where(clause = "ctrl_stat_cd = 'Rental'")
+//    @Where(clause = "ctrl_stat_cd = 'Rental'")
     private Collection<MobilityServRDB> mobilityServRDBs;
 }

@@ -1,0 +1,235 @@
+2021-09-02 13:33:46,053 INFO  org.mongodb.driver.cluster -  Exception in monitor thread while connecting to server 175.106.98.100:27017
+com.mongodb.MongoSocketReadTimeoutException: Timeout while receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:630)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:515)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:355)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:304)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:218)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:144)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/java.net.SocketInputStream.socketRead0(Native Method)
+	at java.base/java.net.SocketInputStream.socketRead(SocketInputStream.java:115)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:168)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:109)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:131)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:647)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:512)
+	... 5 common frames omitted
+2021-09-02 13:34:13,453 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:5, serverValue:4984}] to 175.106.98.100:27017
+2021-09-02 13:34:44,807 ERROR o.e.p.c.mqttv3.internal.ClientState -  testclient: Timed out as no activity, keepAlive=60,000,000,000 lastOutboundActivity=81,985,637,982,852 lastInboundActivity=81,926,057,278,632 time=82,045,642,860,816 lastPing=81,985,637,984,685
+2021-09-02 13:34:44,809 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Lost connection: 서버에서 응답을 기다리는 중 제한시간 초과; retrying...
+2021-09-02 13:34:59,820 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Error connecting or subscribing to [/garak/mqtt/1, /garak/mqtt/2, /garak/mqtt/3, /garak/mqtt/4, /garak/mqtt/5, /garak/mqtt/6]
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:35:34,830 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Exception while connecting and subscribing
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:35:42,066 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:10, serverValue:4992}] to 175.106.98.100:27017
+2021-09-02 13:35:42,070 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:11, serverValue:4993}] to 175.106.98.100:27017
+2021-09-02 13:35:42,071 INFO  org.mongodb.driver.cluster -  Monitor thread successfully connected to server with description ServerDescription{address=175.106.98.100:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=650077338}
+2021-09-02 13:35:52,702 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Error connecting or subscribing to [/garak/mqtt/1, /garak/mqtt/2, /garak/mqtt/3, /garak/mqtt/4, /garak/mqtt/5, /garak/mqtt/6]
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.subscribe(MqttClient.java:460)
+	at org.eclipse.paho.client.mqttv3.MqttClient.subscribe(MqttClient.java:429)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:306)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:36:27,710 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Exception while connecting and subscribing
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.subscribe(MqttClient.java:460)
+	at org.eclipse.paho.client.mqttv3.MqttClient.subscribe(MqttClient.java:429)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:306)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:36:42,721 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Error connecting or subscribing to [/garak/mqtt/1, /garak/mqtt/2, /garak/mqtt/3, /garak/mqtt/4, /garak/mqtt/5, /garak/mqtt/6]
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:36:46,564 INFO  org.mongodb.driver.cluster -  Exception in monitor thread while connecting to server 175.106.98.100:27017
+com.mongodb.MongoSocketReadTimeoutException: Timeout while receiving message
+	at com.mongodb.internal.connection.InternalStreamConnection.translateReadException(InternalStreamConnection.java:630)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:515)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveCommandMessageResponse(InternalStreamConnection.java:355)
+	at com.mongodb.internal.connection.InternalStreamConnection.receive(InternalStreamConnection.java:304)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:218)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:144)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.base/java.net.SocketInputStream.socketRead0(Native Method)
+	at java.base/java.net.SocketInputStream.socketRead(SocketInputStream.java:115)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:168)
+	at java.base/java.net.SocketInputStream.read(SocketInputStream.java:140)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:109)
+	at com.mongodb.internal.connection.SocketStream.read(SocketStream.java:131)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveResponseBuffers(InternalStreamConnection.java:647)
+	at com.mongodb.internal.connection.InternalStreamConnection.receiveMessageWithAdditionalTimeout(InternalStreamConnection.java:512)
+	... 5 common frames omitted
+2021-09-02 13:37:17,731 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Exception while connecting and subscribing
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:37:18,488 INFO  org.mongodb.driver.cluster -  Exception in monitor thread while connecting to server 175.106.98.100:27017
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:70)
+	at com.mongodb.internal.connection.InternalStreamConnection.open(InternalStreamConnection.java:143)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.lookupServerDescription(DefaultServerMonitor.java:188)
+	at com.mongodb.internal.connection.DefaultServerMonitor$ServerMonitorRunnable.run(DefaultServerMonitor.java:144)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.net.SocketTimeoutException: connect timed out
+	at java.base/java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
+	at java.base/java.net.Socket.connect(Socket.java:591)
+	at com.mongodb.internal.connection.SocketStreamHelper.initialize(SocketStreamHelper.java:107)
+	at com.mongodb.internal.connection.SocketStream.initializeSocket(SocketStream.java:79)
+	at com.mongodb.internal.connection.SocketStream.open(SocketStream.java:65)
+	... 4 common frames omitted
+2021-09-02 13:37:32,737 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Error connecting or subscribing to [/garak/mqtt/1, /garak/mqtt/2, /garak/mqtt/3, /garak/mqtt/4, /garak/mqtt/5, /garak/mqtt/6]
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:37:49,642 ERROR o.s.i.m.o.MqttPahoMessageHandler -  Lost connection; will attempt reconnect on next request
+2021-09-02 13:38:07,741 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Exception while connecting and subscribing
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:38:22,746 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Error connecting or subscribing to [/garak/mqtt/1, /garak/mqtt/2, /garak/mqtt/3, /garak/mqtt/4, /garak/mqtt/5, /garak/mqtt/6]
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:38:48,522 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:23, serverValue:4995}] to 175.106.98.100:27017
+2021-09-02 13:38:48,522 INFO  org.mongodb.driver.cluster -  Monitor thread successfully connected to server with description ServerDescription{address=175.106.98.100:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=5294118}
+2021-09-02 13:38:54,915 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:24, serverValue:4998}] to 175.106.98.100:27017
+2021-09-02 13:38:57,750 ERROR o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  Exception while connecting and subscribing
+org.eclipse.paho.client.mqttv3.MqttException: 서버에서 응답을 기다리는 중 제한시간 초과
+	at org.eclipse.paho.client.mqttv3.internal.Token.waitForCompletion(Token.java:112)
+	at org.eclipse.paho.client.mqttv3.MqttToken.waitForCompletion(MqttToken.java:67)
+	at org.eclipse.paho.client.mqttv3.MqttClient.connect(MqttClient.java:331)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.connectAndSubscribe(MqttPahoMessageDrivenChannelAdapter.java:302)
+	at org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter.lambda$scheduleReconnect$2(MqttPahoMessageDrivenChannelAdapter.java:364)
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2021-09-02 13:39:08,235 INFO  c.g.i.conf.MqttInboundConfiguration -  date print : >>>20210902013908235
+2021-09-02 13:39:08,235 INFO  c.g.i.conf.MqttInboundConfiguration -   >>>>>>>>>>>> [t.getId()] = 0
+2021-09-02 13:39:08,244 INFO  org.mongodb.driver.connection -  Closed connection [connectionId{localValue:3, serverValue:4593}] to 175.106.98.100:27017 because there was a socket exception raised on another connection from this pool.
+2021-09-02 13:39:08,309 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:25, serverValue:4999}] to 175.106.98.100:27017
+2021-09-02 13:39:08,316 INFO  c.g.i.conf.MqttInboundConfiguration -  date print : >>>20210902013908316
+2021-09-02 13:39:08,316 INFO  c.g.i.conf.MqttInboundConfiguration -   >>>>>>>>>>>> [t.getId()] = 0
+2021-09-02 18:51:16,359 INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin -  Application shutdown requested.
+2021-09-02 18:51:21,478 INFO  o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  stopped bean 'inbound'; defined in: 'class path resource [com/garak/ingestor/conf/MqttInboundConfiguration.class]'; from source: 'org.springframework.core.type.classreading.SimpleMethodMetadata@469d003c'
+2021-09-02 18:51:21,479 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(byte[], String)'
+2021-09-02 18:51:21,479 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(MqttMessage)'
+2021-09-02 18:51:21,479 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(MqttMessage, String)'
+2021-09-02 18:51:21,479 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(String, String)'
+2021-09-02 18:51:21,479 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(String)'
+2021-09-02 18:51:21,479 INFO  o.s.i.g.GatewayProxyFactoryBean -  stopped bean 'myGateway'
+2021-09-02 18:51:21,479 INFO  o.s.i.endpoint.EventDrivenConsumer -  Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-09-02 18:51:21,480 INFO  o.s.i.c.PublishSubscribeChannel -  Channel 'application.errorChannel' has 0 subscriber(s).
+2021-09-02 18:51:21,480 INFO  o.s.i.endpoint.EventDrivenConsumer -  stopped bean '_org.springframework.integration.errorLogger'
+2021-09-02 18:51:21,480 INFO  o.s.i.endpoint.EventDrivenConsumer -  Removing {message-handler:mqttInboundConfiguration.handler.serviceActivator} as a subscriber to the 'mqttInputChannel' channel
+2021-09-02 18:51:21,480 INFO  o.s.i.channel.DirectChannel -  Channel 'application.mqttInputChannel' has 0 subscriber(s).
+2021-09-02 18:51:21,480 INFO  o.s.i.endpoint.EventDrivenConsumer -  stopped bean 'mqttInboundConfiguration.handler.serviceActivator'
+2021-09-02 18:51:21,480 INFO  o.s.i.endpoint.EventDrivenConsumer -  Removing {message-handler:mqttOutboundConfiguration.mqttOutbound.serviceActivator} as a subscriber to the 'mqttOutboundChannel' channel
+2021-09-02 18:51:21,481 INFO  o.s.i.channel.DirectChannel -  Channel 'application.mqttOutboundChannel' has 0 subscriber(s).
+2021-09-02 18:51:21,481 INFO  o.s.i.endpoint.EventDrivenConsumer -  stopped bean 'mqttOutboundConfiguration.mqttOutbound.serviceActivator'
+2021-09-02 18:51:21,501 INFO  org.mongodb.driver.connection -  Closed connection [connectionId{localValue:25, serverValue:4999}] to 175.106.98.100:27017 because the pool has been closed.
+2021-09-02 18:51:21,507 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-09-02 18:51:21,562 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Shutdown initiated...
+2021-09-02 18:51:21,566 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Shutdown completed.
