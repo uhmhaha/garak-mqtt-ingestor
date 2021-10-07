@@ -1,5 +1,6 @@
 package com.garak.ingestor.conf;
 
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +34,7 @@ public class MqttOutboundConfiguration {
 	    @ServiceActivator(inputChannel = "mqttOutboundChannel")
 	    public MessageHandler mqttOutbound() {
 	        MqttPahoMessageHandler messageHandler =
-	                       new MqttPahoMessageHandler("testClient", mqttClientFactory());
+	                       new MqttPahoMessageHandler(MqttClient.generateClientId(), mqttClientFactory());
 	        messageHandler.setAsync(true);
 	        messageHandler.setDefaultTopic("testTopic");
 	        return messageHandler;

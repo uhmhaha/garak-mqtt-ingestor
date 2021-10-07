@@ -1,18 +1,19 @@
 package com.garak.ingestor.conf;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.garak.ingestor.entity.CodeDetailRDB;
-import com.garak.ingestor.entity.UserRDB;
 import com.garak.ingestor.repository.CodeDetailRDBRepository;
-import com.garak.ingestor.repository.UserRDBRepository;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 //@Component
 public class CodeBroker {    
 	
-	private Map<String, CodeDetailRDB> codeDetailMap;
+	private Map<String, List<CodeDetailRDB>> codeDetailMap;
 	
 	@Autowired
 	private CodeDetailRDBRepository codeRDBRepo;
@@ -32,9 +33,20 @@ public class CodeBroker {
 	@PostConstruct
 	@Transactional
 	public void init() {
-		codeDetailMap = codeRDBRepo.findByUseYn("Y")
-				.stream()
-				.collect(Collectors.toMap(CodeDetailRDB::getCode, x -> (CodeDetailRDB)x));
+		List<CodeDetailRDB> codes =  codeRDBRepo.findByUseYn("Y");
+		
+		Set<String> groupCodes = codes
+		        .stream()
+		        .map(CodeDetailRDB::getGroupCode)
+		        .collect(Collectors.toSet());
+		
+		groupCodes.forEach(a -> {
+			codeDetailMap.put(a, new ArrayList<CodeDetailRDB>());
+		});
+		
+		for( CodeDetailRDB c : codes) {
+			codeDetailMap.get(c.getGroupCode()).add(c);
+		}
 	}
 }
 

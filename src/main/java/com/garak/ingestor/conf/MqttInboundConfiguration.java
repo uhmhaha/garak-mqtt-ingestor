@@ -2,8 +2,13 @@ package com.garak.ingestor.conf;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.annotation.PostConstruct;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,19 +21,17 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
-import com.garak.ingestor.entity.CodeDetailRDB;
 import com.garak.ingestor.entity.MobilityRDB;
 import com.garak.ingestor.entity.UserRDB;
-import com.garak.ingestor.repository.MobilityBatteryKitRDBRepository;
 import com.garak.ingestor.repository.MobilityNosqlRepository;
 import com.garak.ingestor.repository.MobilityRDBRepository;
-import com.garak.ingestor.repository.MobilityServRDBRepository;
-import com.garak.ingestor.repository.UserRDBRepository;
+import com.garak.ingestor.task.IotUnreachableTask;
 import com.garak.ingestor.vo.MobilityVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +39,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 public class MqttInboundConfiguration {
-
+	
+	@Autowired
+	private ThreadPoolTaskScheduler taskScheduler;
 	@Autowired
 	private MyGateway myPublish;
 	@Autowired
@@ -51,9 +56,24 @@ public class MqttInboundConfiguration {
 	private UserStateBroker userBroker;
 	//@Autowired
 	//private CodeBroker codeBroker;
+	Map<String, Long> lastInterfaceTime;
+	SimpleDateFormat sDate2;
 
-	SimpleDateFormat sDate2 = new SimpleDateFormat("yyyyMMddHHmmssSSS");
-
+    @PostConstruct
+    public void populateMovieCache() {
+        // populates the movie cache upon initialization...
+    	sDate2 = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+    	lastInterfaceTime = new HashMap<>();
+    	taskScheduler.scheduleWithFixedDelay(
+    			  new IotUnreachableTask(lastInterfaceTime, mobiRepo),
+    			  5000
+    			);
+//    	taskScheduler.schedule(
+//  			  new IotUnreachableTask(lastMobility),
+//  			  new Date(System.currentTimeMillis() + 30000)
+//  			);
+    }
+    
 	@Bean
 	public MessageChannel mqttInputChannel() {
 		return new DirectChannel();
@@ -71,10 +91,10 @@ public class MqttInboundConfiguration {
 		String[] topics = mobis.stream().map(mobi -> mobi.getMobiTopic()).toArray(String[]::new);
 
 		MqttPahoMessageDrivenChannelAdapter adapter = new MqttPahoMessageDrivenChannelAdapter(mqttProp.getUrl(),
-				mqttProp.getClientid(), topics);
+				MqttClient.generateClientId(), topics);
 		adapter.setCompletionTimeout(5000);
 		adapter.setConverter(new DefaultPahoMessageConverter());
-		adapter.setQos(1);
+		adapter.setQos(0);
 		adapter.setOutputChannel(mqttInputChannel());
 		return adapter;
 	}
@@ -93,18 +113,23 @@ public class MqttInboundConfiguration {
 					m = objectReader().readValue(message.getPayload().toString());
 					// id 설정 : 추후 edge단으로 추가 가능
 					m.setMobiId(message.getHeaders().get("mqtt_receivedTopic").toString().substring(12));
+					//last interface time
+					System.out.println("System.currentTimeMillis() + 32400000" + (System.currentTimeMillis() + 32400000));
+					lastInterfaceTime.put(m.getMobiId(), System.currentTimeMillis() + 32400000);
+					System.out.println("[" + m.getMobiId() + "] : lastInterfaceTime : " + lastInterfaceTime.get(m.getMobiId()));
 					// event state
 					MobiState mo = getMobiState(m.getMobiId());
-					String eventName = evlauateEvent(mo.getRetalState(), m.getBattery().getBmsStat());
-					if (!eventName.equals(mo.getEventState())) {
-						mo.setEventState(eventName);
+					String eventCode = evlauateEvent(mo.getRetalState(), m.getBattery().getBmsStat());
+					if (!eventCode.equals(mo.getEventState())) {
+						mo.setEventState(eventCode);
 						// insert into event table
 						MqttMessage mq = new MqttMessage();
 						mq.setPayload("test".getBytes());
 						// new ObjectMapper().writeValueAsBytes(mo);
 						myPublish.sendToMqtt(new ObjectMapper().writeValueAsBytes(mo), "test1234");
 					}
-					m.setEventName(eventName);
+					m.setEventCode(eventCode);
+					m.setEventName(eventCode);
 					m.setMobiId(mo.getMobiId());
 					m.setInterfaceDate(sDate2.format(new Date()));
 					log.info("date print : >>>" + m.getInterfaceDate());
@@ -117,7 +142,7 @@ public class MqttInboundConfiguration {
 					// 
 					m.setCtrlServId(mo.getCtrlServId());
 					m.setCtrlStatCd(mo.getCtrlStatCd());
-					m.setCtrlStatNm("");
+					m.setCtrlStatNm(mo.getCtrlStatCd());
 					m.setMobiRegiNum(mo.getMobiRegiNum());
 					m.setMobiTypCd(mo.getMobiTypCd());
 					m.setMobiTypNm(mo.getMobiTypNm());

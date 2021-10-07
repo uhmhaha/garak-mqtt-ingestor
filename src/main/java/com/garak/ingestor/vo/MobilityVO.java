@@ -56,10 +56,15 @@ public class MobilityVO {
 	
 	//VO object - event
 	private String eventName;
+	private String eventCode;
 	private String rentalState;
 
 	public void setMobiId(String mobiId) {
 		this.mobiId = mobiId;
+	}
+
+	public void setEventCode(String eventCode) {
+		this.eventCode = eventCode;
 	}
 	
 	public void setEventName(String eventName) {
