@@ -33,9 +33,9 @@ management:
 
 ---
 spring:
-  profiles: dev
+  profiles: old-dev
   datasource:
-    url: jdbc:mysql://175.106.98.100:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
+    url: jdbc:mysql://175.106.98.100:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: Skcnc123!@#
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -47,7 +47,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
   data:
     mongodb:  
-      uri: mongodb://admin:admin@175.106.98.100:27017/mqtt  
+      uri: mongodb://admin:admin@175.106.98.100:27017/mqtt
 
 logging:
   level:
@@ -55,42 +55,78 @@ logging:
 mqtt:
   url: tcp://175.106.98.100:1883
   clientid: skyangmqtt001
+  
 ---
 spring:
-  profiles: stg
+  profiles: new-dev
   datasource:
-    url: jdbc:mysql://localhost:3306/DB명작성?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
-    username: test
-    password: test
+    url: jdbc:mysql://101.79.10.245:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: Skcnc123!@#
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa: 
     # mysql 사용 
     database: mysql 
     # 콘솔에 sql 출력 여부  
     show-sql: true 
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-logging:
-  level:
-    root: DEBUG
-mqtt:
-  url: tcp://175.106.98.100:1883
----
-spring:
-  profiles: prd
-  datasource:
-    url: jdbc:mysql://localhost:3306/DB명작성?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC 
-    username: test
-    password: test
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa: 
-    # mysql 사용 
-    database: mysql 
-    # 콘솔에 sql 출력 여부  
-    show-sql: true 
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-logging:
-  level:
-    root: ERROR
-mqtt:
-  url: tcp://175.106.98.100:1883
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
+  data:
+    mongodb:  
+      uri: mongodb://admin:admin@101.79.10.243:27017/mqtt
 
+logging:
+  level:
+    root: INFO
+mqtt:
+  url: tcp://175.106.98.100:1883
+  clientid: skyangmqtt001
+  
+---
+spring:
+  profiles: old-opr
+  datasource:
+    url: jdbc:mysql://10.0.200.6:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: Skcnc123!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: 
+    # mysql 사용 
+    database: mysql 
+    # 콘솔에 sql 출력 여부  
+    show-sql: true 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
+  data:
+    mongodb:  
+      uri: mongodb://admin:admin@10.0.200.6:27017/mqtt  
+
+logging:
+  level:
+    root: INFO
+mqtt:
+  url: tcp://10.0.200.6:1883
+  clientid: skyangmqtt001
+
+---
+spring:
+  profiles: new-opr
+  datasource:
+    url: jdbc:mysql://10.0.110.12:3306/shop?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: Skcnc123!@#
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa: 
+    # mysql 사용 
+    database: mysql 
+    # 콘솔에 sql 출력 여부  
+    show-sql: true 
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect  
+  data:
+    mongodb:  
+      uri: mongodb://admin:admin@10.0.110.11:27017/mqtt
+
+logging:
+  level:
+    root: INFO
+mqtt:
+  url: tcp://10.0.200.6:1883
+  clientid: skyangmqtt001
