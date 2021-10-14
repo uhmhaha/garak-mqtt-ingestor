@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration>
+    <!-- properties -->
+    
+    <!--  appenders -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{ISO8601, Asia/Seoul} %-5level %logger{36} - %mdc %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>256</queueSize>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+    
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%date{ISO8601, Asia/Seoul} %-5level %logger{36} - %mdc %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+            <maxHistory>${LOG_FILE_MAX_HISTORY}</maxHistory>
+        </rollingPolicy>
+    </appender>
+    <springProfile name="default">
+        <logger name="com.garak.ingestor" level="DEBUG" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="ASYNC"/>
+        </root>
+    </springProfile>
+    <springProfile name="dev">
+        <logger name="com.garak.ingestor" level="DEBUG" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="DEBUG">
+            <appender-ref ref="ASYNC"/>
+             <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+    <springProfile name="stg">
+        <logger name="com.garak.ingestor" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="ASYNC"/>
+        </root>
+    </springProfile>
+    <springProfile name="prd">
+        <logger name="com.garak.ingestor" level="ERROR" additivity="false">
+            <appender-ref ref="ASYNC"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="ASYNC"/>
+        </root>
+    </springProfile>
+</configuration>

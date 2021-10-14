@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "mqtt",
+      "type": "com.garak.ingestor.conf.MqttProperties",
+      "sourceType": "com.garak.ingestor.conf.MqttProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mqtt.clientid",
+      "type": "java.lang.String",
+      "sourceType": "com.garak.ingestor.conf.MqttProperties"
+    },
+    {
+      "name": "mqtt.url",
+      "type": "java.lang.String",
+      "sourceType": "com.garak.ingestor.conf.MqttProperties"
+    }
+  ],
+  "hints": []
+}

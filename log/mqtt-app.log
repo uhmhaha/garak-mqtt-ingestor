@@ -2131,3 +2131,89 @@ java.lang.NullPointerException: null
 2021-10-07 17:44:24,492 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -  Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-10-07 17:44:24,495 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Shutdown initiated...
 2021-10-07 17:44:24,504 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Shutdown completed.
+2021-10-14 11:36:09,412 INFO  c.garak.ingestor.IngestorApplication -  Starting IngestorApplication using Java 16.0.1 on DESKTOP-U16K2OT with PID 2952 (D:\workspace\garak_workspace\garak-mqtt-ingestor\target\classes started by sy in D:\workspace\garak_workspace\garak-mqtt-ingestor)
+2021-10-14 11:36:09,415 DEBUG c.garak.ingestor.IngestorApplication -  Running with Spring Boot v2.5.2, Spring v5.3.8
+2021-10-14 11:36:09,416 INFO  c.garak.ingestor.IngestorApplication -  The following profiles are active: dev
+2021-10-14 11:36:09,447 WARN  o.s.b.c.config.ConfigDataEnvironment -  Property 'spring.profiles' imported from location 'class path resource [application.yaml]' is invalid and should be replaced with 'spring.config.activate.on-profile' [origin: class path resource [application.yaml] - 79:13]
+2021-10-14 11:36:09,447 WARN  o.s.b.c.config.ConfigDataEnvironment -  Property 'spring.profiles' imported from location 'class path resource [application.yaml]' is invalid and should be replaced with 'spring.config.activate.on-profile' [origin: class path resource [application.yaml] - 60:13]
+2021-10-14 11:36:09,448 WARN  o.s.b.c.config.ConfigDataEnvironment -  Property 'spring.profiles' imported from location 'class path resource [application.yaml]' is invalid and should be replaced with 'spring.config.activate.on-profile' [origin: class path resource [application.yaml] - 36:13]
+2021-10-14 11:36:10,101 INFO  o.s.d.r.c.RepositoryConfigurationDelegate -  Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-14 11:36:10,103 INFO  o.s.d.r.c.RepositoryConfigurationDelegate -  Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-10-14 11:36:10,214 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data JPA - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.MobilityNosqlRepository. If you want this repository to be a JPA repository, consider annotating your entities with one of these annotations: javax.persistence.Entity, javax.persistence.MappedSuperclass (preferred), or consider extending one of the following types with your repository: org.springframework.data.jpa.repository.JpaRepository.
+2021-10-14 11:36:10,234 INFO  o.s.d.r.c.RepositoryConfigurationDelegate -  Finished Spring Data repository scanning in 125 ms. Found 6 JPA repository interfaces.
+2021-10-14 11:36:10,239 INFO  o.s.d.r.c.RepositoryConfigurationDelegate -  Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-14 11:36:10,239 INFO  o.s.d.r.c.RepositoryConfigurationDelegate -  Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2021-10-14 11:36:10,245 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.CodeDetailRDBRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2021-10-14 11:36:10,246 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.EventRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2021-10-14 11:36:10,246 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.MobilityBatteryKitRDBRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2021-10-14 11:36:10,247 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.MobilityRDBRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2021-10-14 11:36:10,248 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.MobilityServRDBRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2021-10-14 11:36:10,248 INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport -  Spring Data MongoDB - Could not safely identify store assignment for repository candidate interface com.garak.ingestor.repository.UserRDBRepository. If you want this repository to be a MongoDB repository, consider annotating your entities with one of these annotations: org.springframework.data.mongodb.core.mapping.Document (preferred), or consider extending one of the following types with your repository: org.springframework.data.mongodb.repository.MongoRepository.
+2021-10-14 11:36:10,251 INFO  o.s.d.r.c.RepositoryConfigurationDelegate -  Finished Spring Data repository scanning in 11 ms. Found 1 MongoDB repository interfaces.
+2021-10-14 11:36:10,422 INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor -  No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+2021-10-14 11:36:10,430 INFO  o.s.i.c.DefaultConfiguringBeanFactoryPostProcessor -  No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+2021-10-14 11:36:10,479 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker -  Bean 'org.springframework.integration.config.IntegrationManagementConfiguration' of type [org.springframework.integration.config.IntegrationManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-14 11:36:10,487 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker -  Bean 'integrationChannelResolver' of type [org.springframework.integration.support.channel.BeanFactoryChannelResolver] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-14 11:36:10,488 INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker -  Bean 'integrationDisposableAutoCreatedBeans' of type [org.springframework.integration.config.annotation.Disposables] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-14 11:36:10,682 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Starting...
+2021-10-14 11:36:10,860 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Start completed.
+2021-10-14 11:36:10,896 INFO  o.h.jpa.internal.util.LogHelper -  HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-10-14 11:36:10,943 INFO  org.hibernate.Version -  HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-10-14 11:36:11,047 INFO  o.h.annotations.common.Version -  HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-10-14 11:36:11,134 INFO  org.hibernate.dialect.Dialect -  HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021-10-14 11:36:11,615 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator -  HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-10-14 11:36:11,622 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -  Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-10-14 11:36:12,014 INFO  org.mongodb.driver.cluster -  Cluster created with settings {hosts=[175.106.98.100:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms'}
+2021-10-14 11:36:12,084 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:2, serverValue:11689}] to 175.106.98.100:27017
+2021-10-14 11:36:12,085 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:1, serverValue:11690}] to 175.106.98.100:27017
+2021-10-14 11:36:12,085 INFO  org.mongodb.driver.cluster -  Monitor thread successfully connected to server with description ServerDescription{address=175.106.98.100:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=6, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=24340800}
+2021-10-14 11:36:12,557 DEBUG c.g.i.conf.MobilityStateBroker -  kit_id1
+2021-10-14 11:36:12,557 DEBUG c.g.i.conf.MobilityStateBroker -  kit_id3
+2021-10-14 11:36:12,558 DEBUG c.g.i.conf.MobilityStateBroker -  kit_id4
+2021-10-14 11:36:12,981 INFO  o.s.b.a.e.web.EndpointLinksResolver -  Exposing 1 endpoint(s) beneath base path '/actuator'
+2021-10-14 11:36:13,219 INFO  o.s.i.endpoint.EventDrivenConsumer -  Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-10-14 11:36:13,219 INFO  o.s.i.c.PublishSubscribeChannel -  Channel 'application.errorChannel' has 1 subscriber(s).
+2021-10-14 11:36:13,220 INFO  o.s.i.endpoint.EventDrivenConsumer -  started bean '_org.springframework.integration.errorLogger'
+2021-10-14 11:36:13,221 INFO  o.s.i.endpoint.EventDrivenConsumer -  Adding {message-handler:mqttInboundConfiguration.handler.serviceActivator} as a subscriber to the 'mqttInputChannel' channel
+2021-10-14 11:36:13,221 INFO  o.s.i.channel.DirectChannel -  Channel 'application.mqttInputChannel' has 1 subscriber(s).
+2021-10-14 11:36:13,221 INFO  o.s.i.endpoint.EventDrivenConsumer -  started bean 'mqttInboundConfiguration.handler.serviceActivator'
+2021-10-14 11:36:13,221 INFO  o.s.i.endpoint.EventDrivenConsumer -  Adding {message-handler:mqttOutboundConfiguration.mqttOutbound.serviceActivator} as a subscriber to the 'mqttOutboundChannel' channel
+2021-10-14 11:36:13,221 INFO  o.s.i.channel.DirectChannel -  Channel 'application.mqttOutboundChannel' has 1 subscriber(s).
+2021-10-14 11:36:13,221 INFO  o.s.i.endpoint.EventDrivenConsumer -  started bean 'mqttOutboundConfiguration.mqttOutbound.serviceActivator'
+2021-10-14 11:36:13,221 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  started bean 'myGateway#sendToMqtt(byte[], String)'
+2021-10-14 11:36:13,221 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  started bean 'myGateway#sendToMqtt(MqttMessage)'
+2021-10-14 11:36:13,221 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  started bean 'myGateway#sendToMqtt(MqttMessage, String)'
+2021-10-14 11:36:13,221 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  started bean 'myGateway#sendToMqtt(String, String)'
+2021-10-14 11:36:13,221 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  started bean 'myGateway#sendToMqtt(String)'
+2021-10-14 11:36:13,221 INFO  o.s.i.g.GatewayProxyFactoryBean -  started bean 'myGateway'
+2021-10-14 11:36:13,578 INFO  o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  started bean 'inbound'; defined in: 'class path resource [com/garak/ingestor/conf/MqttInboundConfiguration.class]'; from source: 'org.springframework.core.type.classreading.SimpleMethodMetadata@40021799'
+2021-10-14 11:36:13,755 INFO  o.s.b.w.e.netty.NettyWebServer -  Netty started on port 8080
+2021-10-14 11:36:13,772 INFO  c.garak.ingestor.IngestorApplication -  Started IngestorApplication in 4.703 seconds (JVM running for 5.392)
+2021-10-14 11:36:13,927 INFO  c.g.i.conf.MqttInboundConfiguration -  date print : >>>20211014113613927
+2021-10-14 11:36:13,932 INFO  c.g.i.conf.MqttInboundConfiguration -   >>>>>>>>>>>> [t.getId()] = 1632788343000
+2021-10-14 11:36:14,134 INFO  org.mongodb.driver.connection -  Opened connection [connectionId{localValue:3, serverValue:11691}] to 175.106.98.100:27017
+2021-10-14 11:36:14,161 INFO  c.g.i.conf.MqttInboundConfiguration -  date print : >>>20211014113614161
+2021-10-14 11:36:14,161 INFO  c.g.i.conf.MqttInboundConfiguration -   >>>>>>>>>>>> [t.getId()] = 1632788343000
+2021-10-14 11:36:14,171 INFO  c.g.i.conf.MqttInboundConfiguration -  date print : >>>20211014113614171
+2021-10-14 11:36:14,172 INFO  c.g.i.conf.MqttInboundConfiguration -   >>>>>>>>>>>> [t.getId()] = 1632788343000
+2021-10-14 11:36:46,124 INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin -  Application shutdown requested.
+2021-10-14 11:36:51,137 INFO  o.s.i.m.i.MqttPahoMessageDrivenChannelAdapter -  stopped bean 'inbound'; defined in: 'class path resource [com/garak/ingestor/conf/MqttInboundConfiguration.class]'; from source: 'org.springframework.core.type.classreading.SimpleMethodMetadata@40021799'
+2021-10-14 11:36:51,141 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(byte[], String)'
+2021-10-14 11:36:51,141 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(MqttMessage)'
+2021-10-14 11:36:51,141 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(MqttMessage, String)'
+2021-10-14 11:36:51,142 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(String, String)'
+2021-10-14 11:36:51,142 INFO  o.s.i.g.GatewayProxyFactoryBean$MethodInvocationGateway -  stopped bean 'myGateway#sendToMqtt(String)'
+2021-10-14 11:36:51,142 INFO  o.s.i.g.GatewayProxyFactoryBean -  stopped bean 'myGateway'
+2021-10-14 11:36:51,142 INFO  o.s.i.endpoint.EventDrivenConsumer -  Removing {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+2021-10-14 11:36:51,142 INFO  o.s.i.c.PublishSubscribeChannel -  Channel 'application.errorChannel' has 0 subscriber(s).
+2021-10-14 11:36:51,142 INFO  o.s.i.endpoint.EventDrivenConsumer -  stopped bean '_org.springframework.integration.errorLogger'
+2021-10-14 11:36:51,143 INFO  o.s.i.endpoint.EventDrivenConsumer -  Removing {message-handler:mqttInboundConfiguration.handler.serviceActivator} as a subscriber to the 'mqttInputChannel' channel
+2021-10-14 11:36:51,143 INFO  o.s.i.channel.DirectChannel -  Channel 'application.mqttInputChannel' has 0 subscriber(s).
+2021-10-14 11:36:51,143 INFO  o.s.i.endpoint.EventDrivenConsumer -  stopped bean 'mqttInboundConfiguration.handler.serviceActivator'
+2021-10-14 11:36:51,143 INFO  o.s.i.endpoint.EventDrivenConsumer -  Removing {message-handler:mqttOutboundConfiguration.mqttOutbound.serviceActivator} as a subscriber to the 'mqttOutboundChannel' channel
+2021-10-14 11:36:51,143 INFO  o.s.i.channel.DirectChannel -  Channel 'application.mqttOutboundChannel' has 0 subscriber(s).
+2021-10-14 11:36:51,143 INFO  o.s.i.endpoint.EventDrivenConsumer -  stopped bean 'mqttOutboundConfiguration.mqttOutbound.serviceActivator'
+2021-10-14 11:36:51,159 INFO  org.mongodb.driver.connection -  Closed connection [connectionId{localValue:3, serverValue:11691}] to 175.106.98.100:27017 because the pool has been closed.
+2021-10-14 11:36:51,167 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean -  Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-10-14 11:36:51,169 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Shutdown initiated...
+2021-10-14 11:36:51,173 INFO  com.zaxxer.hikari.HikariDataSource -  HikariPool-1 - Shutdown completed.
