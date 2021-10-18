@@ -16,6 +16,7 @@
         <appender-ref ref="CONSOLE"/>
     </appender>
     
+    
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_FILE}</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
