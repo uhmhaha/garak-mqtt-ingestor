@@ -36,30 +36,82 @@
             <appender-ref ref="ASYNC"/>
         </root>
     </springProfile>
-    <springProfile name="dev">
+    
+    <springProfile name="old-dev">
         <logger name="com.garak.ingestor" level="DEBUG" additivity="false">
             <appender-ref ref="ASYNC"/>
             <appender-ref ref="FILE"/>
         </logger>
         <root level="DEBUG">
             <appender-ref ref="ASYNC"/>
-             <appender-ref ref="FILE"/>
+            <appender-ref ref="FILE"/>
         </root>
-    </springProfile>
-    <springProfile name="stg">
         <logger name="com.garak.ingestor" level="INFO" additivity="false">
             <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
         </logger>
         <root level="INFO">
             <appender-ref ref="ASYNC"/>
-        </root>
+            <appender-ref ref="FILE"/>
+        </root>        
     </springProfile>
-    <springProfile name="prd">
-        <logger name="com.garak.ingestor" level="ERROR" additivity="false">
+    
+    <springProfile name="new-dev">
+        <logger name="com.garak.ingestor" level="DEBUG" additivity="false">
             <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="DEBUG">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </root>
+        <logger name="com.garak.ingestor" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
         </logger>
         <root level="INFO">
             <appender-ref ref="ASYNC"/>
-        </root>
+            <appender-ref ref="FILE"/>
+        </root>        
     </springProfile>
+    
+    <springProfile name="old-opr">
+        <logger name="com.garak.ingestor" level="DEBUG" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="DEBUG">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </root>
+        <logger name="com.garak.ingestor" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </root>        
+    </springProfile>
+    
+    <springProfile name="new-opr">
+        <logger name="com.garak.ingestor" level="DEBUG" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="DEBUG">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </root>
+        <logger name="com.garak.ingestor" level="INFO" additivity="false">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </logger>
+        <root level="INFO">
+            <appender-ref ref="ASYNC"/>
+            <appender-ref ref="FILE"/>
+        </root>        
+    </springProfile>          
+    
+
 </configuration>
