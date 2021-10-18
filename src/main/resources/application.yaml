@@ -51,7 +51,7 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
 mqtt:
   url: tcp://175.106.98.100:1883
   clientid: skyangmqtt001
@@ -76,7 +76,7 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
 mqtt:
   url: tcp://175.106.98.100:1883
   clientid: skyangmqtt001
@@ -101,7 +101,7 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
 mqtt:
   url: tcp://10.0.200.6:1883
   clientid: skyangmqtt001
@@ -126,7 +126,7 @@ spring:
 
 logging:
   level:
-    root: INFO
+    root: DEBUG
 mqtt:
   url: tcp://10.0.200.6:1883
   clientid: skyangmqtt001
